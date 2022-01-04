@@ -98,12 +98,34 @@ Performance: O(E + VlogV) Θ(ElogV), <br>
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif" style="width: 300px;" /><br>
     <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via Wikimedia Commons</span>
 </p>
+         
+## 0-1 BFS
+<p>Kind of BFS where weight can be only 0 or 1</p>
+         
+#### How it works?
+1. Works like Dijkstra but with some code changes (when we can do relaxation):
+  
+                       if(edge_weight[pointer][edge] == 0) deque.addFirst(edge);
+                       else  deque.addLast(edge);
+         
+         
+#### How to reproduce path?
+1. At each performed relaxation add pointer (pointer at first is startVertex, then pointer is pollFirst from TreeSet<Vertex>) to paths array (for key use <s>relaxed</s> vertex)
+2. Than using stack (because you need to reverse path), print it out. Exemple for viewing all pathes from startVertex:
+
+<p>
+Performance: O(E + V), <br>
+&emsp;&emsp;where V - vertices<br>
+&emsp;&emsp;and E - edges
+</p>
+
 
 ## WFI
 <p>Also known as Floyd's algorithm, the Roy–Warshall algorithm, the Roy–Floyd algorithm.<br>
 &emsp;&emsp;WFI means<br>
 &emsp;&emsp;Warshall Floyd Ingerman<br>
-&emsp;&emsp;(Warshall, Floyd, Roy - idea; Peter Ingerman - algorithm) </p>
+&emsp;&emsp;(Warshall, Floyd, Roy - idea; Peter Ingerman - algorithm)<br>
+<b>It find distance each for each vertex</b></p>
          
 #### How it works?
 1. Create adjacency matrix with weight as values. Set diagonal of 0-s (vertex can not be connected to itself). For no connection use `∞` Example:
@@ -125,9 +147,6 @@ Performance: O(E + VlogV) Θ(ElogV), <br>
                         matrix[i][j] = Math.min(matrix[i][j], matrix[i][k] + matrix[k][j]);
          
          
-#### How to reproduce path?
-1. At each performed relaxation add pointer (pointer at first is startVertex, then pointer is pollFirst from TreeSet<Vertex>) to paths array (for key use <s>relaxed</s> vertex)
-2. Than using stack (because you need to reverse path), print it out. Exemple for viewing all pathes from startVertex:
 
 <p>
 Performance: O(V³) Θ(V²), <br>
@@ -136,5 +155,26 @@ Performance: O(V³) Θ(V²), <br>
 
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Floyd-Warshall-Algorithm-Problem.png" style="width: 800px;" /><br>
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via Wikimedia Commons</span>
+</p>
+  
+  
+## Bellman Ford
+<p>Work with negative cycles. Doesn't work with undirected and at the same time negative edge</p>
+         
+#### How it works?
+1. Set distance that equals Integer.MAX_VALUE for all verteces. Then set distance of startVertex to 0
+2. For every vertex, do relaxation for others
+3. At the end you can check if graph contains negative weight cycle
+         
+         
+<p>
+Performance: O(VE) Θ(VE), <br>
+&emsp;&emsp;where V - count of Vertices
+&emsp;&emsp;and E - edges
+</p>
+
+<p align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Bellman%E2%80%93Ford_algorithm_example.gif/274px-Bellman%E2%80%93Ford_algorithm_example.gif" style="width: 400px;" /><br>
     <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via Wikimedia Commons</span>
 </p>
