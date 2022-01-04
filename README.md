@@ -61,6 +61,21 @@ Performance: O(E + V), <br>
 #### How to reproduce path?
 1. At each performed relaxation add pointer (pointer at first is startVertex, then pointer is pollFirst from TreeSet<Vertex>) to paths array (for key use <s>relaxed</s> vertex)
 2. Than using stack (because you need to reverse path), print it out. Exemple for viewing all pathes from startVertex:
+         
+
+  
+              Stack<Integer> realPath = new Stack<>();
+            for(Vertex vertex : vertices) {
+                if(vertex.dist != Integer.MAX_VALUE) {
+                    System.out.print("Path from " + startPoint + " to " + vertex.id + ": " + startPoint);
+                    for (int v = vertex.id; v != startPoint; v = paths[v])
+                        realPath.push(v);
+                    while (!realPath.isEmpty())
+                        System.out.print("->" + realPath.pop());
+                    System.out.println();
+                }else System.out.println("No way for "+vertex.id);
+            }
+
   
 <p>
 Performance: O(E + VlogV) Θ(ElogV), <br>
