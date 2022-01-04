@@ -8,9 +8,9 @@ import java.util.*;
  *  single-source shortest paths
  *  Doesn't work with negative numbers
  *
- *  Performance: O(E VlogV),
+ *  Performance: O(E + VlogV) Θ(ElogV)
  *      where V - vertices
- *      and E - eges
+ *      and E - edges
  *
  *  @author OASIS systems
  */
@@ -70,7 +70,7 @@ public class Dijkstra {
         }
 
         public void addVertex(int id) { vertices[id] = new Vertex(id, Integer.MAX_VALUE); }
-        public void addEdge(int from, int to, int mass) { edges[from].add(new Edge(vertices[from].id, vertices[to].id, mass)); }
+        public void addEdge(int from, int to, int weight) { edges[from].add(new Edge(vertices[from].id, vertices[to].id, weight)); }
 
         public void Dijkstra(int startPoint) {
             TreeSet<Vertex> list = new TreeSet<>();
@@ -122,8 +122,8 @@ public class Dijkstra {
         }
 
         private boolean minDist(Vertex to, Edge edge, Vertex pointer) {
-            if(edge.mass + pointer.dist < to.dist){
-                vertices[edge.to].dist = edge.mass + pointer.dist;
+            if(edge.weight + pointer.dist < to.dist){
+                vertices[edge.to].dist = edge.weight + pointer.dist;
                 return true;
             }
             return false;
@@ -144,11 +144,11 @@ public class Dijkstra {
         }
         private class Edge {
             public int from, to;
-            public int mass;
-            public Edge(int from, int to, int mass){
+            public int weight;
+            public Edge(int from, int to, int weight){
                 this.from = from;
                 this.to = to;
-                this.mass = mass;
+                this.weight = weight;
             }
         }
     }

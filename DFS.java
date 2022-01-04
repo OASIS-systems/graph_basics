@@ -9,6 +9,10 @@ package algo.graph;
  *    (4)
  *    Output DFS: 0 1 4 2 3
  *
+ *    Performance: O(E + V),
+ *      where V - vertices
+ *      and E - edges
+ *
  *    @author OASIS systems
  */
 

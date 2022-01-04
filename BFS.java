@@ -13,7 +13,9 @@ package algo.graph;
  *    but it does not say that you must search for
  *    anything in particular
  *
- *    Performance: O(V)
+ *    Performance: O(E + V),
+ *      where V - vertices
+ *      and E - edges
  *
  *    @author OASIS systems
  */

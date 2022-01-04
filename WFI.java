@@ -10,7 +10,7 @@ package algo.graph;
  *      Performance: O(V³) Θ(V²)
  *          where V - count of Vertices
  *
- *      Additional info. Graph belllow accept mass no more
+ *      Additional info. Graph belllow accept weight no more
  *      than Integer.MAX_VALUE-1`000`000`000, because
  *      when java add to Integer.MAX_VALUE at least 1,
  *      result is Integer.MIN_VALUE
@@ -97,13 +97,13 @@ public class WFI {
                 }
         }
 
-        public void addEdge(int from, int to, int mass) {
-            matrix[from][to] = mass;
+        public void addEdge(int from, int to, int weight) {
+            matrix[from][to] = weight;
             if(includePaths) next[from][to] = to;
         }
-        public void addEdgeUndirected(int from, int to, int mass) {
-            matrix[from][to] = mass;
-            matrix[to][from] = mass;
+        public void addEdgeUndirected(int from, int to, int weight) {
+            matrix[from][to] = weight;
+            matrix[to][from] = weight;
             if(includePaths) {
                 next[from][to] = to;
                 next[to][from] = from;
